@@ -5,12 +5,11 @@ import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-list',
-  standalone: true,   // ¡Esto es OBLIGATORIO!
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.css']
 })
-
 export class PokemonListComponent implements OnInit {
   pokemons: any[] = [];
   filtro: string = '';
