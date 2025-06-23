@@ -1,0 +1,111 @@
+/* Fondo general */
+.contenedor {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 3rem auto;
+  font-family: 'Press Start 2P';
+  font-size: 3px;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+  text-align: center;
+}
+
+/* Inputs estilo moderno */
+.buscador,
+.filtro-tipo {
+  font-family: 'Press Start 2P', cursive;
+  width: 100%;
+  max-width: 320px;
+  padding: 12px 15px;
+  margin: 0.5rem auto 1.5rem;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buscador::placeholder,
+.filtro-tipo option {
+  color: #050505;
+}
+
+.buscador:focus,
+.filtro-tipo:focus {
+  background-color: #ffffff;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+.pokemon-item {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.6);
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.pokemon-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 30px rgba(63, 66, 255, 0.8);
+}
+
+/* Imagen Pokémon */
+.pokemon-item img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+/* Nombre Pokémon */
+.pokemon-item span {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  color: #141414;
+}
+
+.tipos {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Etiquetas tipo badge */
+.tipo {
+  background-color: #3f52ff; /* azul vibrante para combinar con el texto */
+  color: white;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* Mensaje "No se encontraron" */
+p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-top: 2rem;
+}

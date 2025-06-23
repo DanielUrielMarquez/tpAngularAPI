@@ -1,16 +1,23 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
-  private apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100';
+  baseUrl = 'https://pokeapi.co/api/v2';
 
   constructor(private http: HttpClient) {}
 
-  getPokemons(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  getPokemons() {
+    return this.http.get(`${this.baseUrl}/pokemon?limit=50`);
+  }
+
+  getTypes() {
+    return this.http.get(`${this.baseUrl}/type/`);
+  }
+
+  getPokemonDetail(url: string) {
+    return this.http.get(url);
   }
 }

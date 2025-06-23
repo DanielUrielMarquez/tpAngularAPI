@@ -1,11 +1,37 @@
-<h2>Lista de Pokémon</h2>
+<div class="contenedor">
+  <h2>Pokédex</h2>
 
-<input type="text" [(ngModel)]="filtro" placeholder="Buscar por nombre..." />
+  <!-- Filtro por nombre -->
+  <input
+    [(ngModel)]="filtro"
+    placeholder="Buscar por nombre..."
+    class="buscador"
+    aria-label="Buscar Pokémon por nombre"
+  />
 
-<ul>
-  <li *ngFor="let p of pokemonsFiltrados">
-    {{ p.name }}
-  </li>
-</ul>
+  <!-- Filtro por tipo -->
+  <select
+    [(ngModel)]="tipoSeleccionado"
+    class="filtro-tipo"
+    aria-label="Filtrar por tipo de Pokémon"
+  >
+    <option value="">Todos los tipos</option>
+    <option *ngFor="let tipo of tipos" [value]="tipo.name">
+      {{ tipo.name | titlecase }}
+    </option>
+  </select>
 
+  <ul>
+    <li *ngFor="let p of pokemonsFiltrados" class="pokemon-item">
+      <img [src]="p.imagen" [alt]="p.name" />
+      <span>{{ p.name | titlecase }}</span>
+      <div class="tipos">
+        <span>Tipo: {{ p.types.join(', ') | titlecase }}</span>
+      </div>
+    </li>
+  </ul>
 
+  <p *ngIf="pokemonsFiltrados.length === 0">
+    No se encontraron Pokémon.
+  </p>
+</div>
