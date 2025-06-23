@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "proyecto_2": {
+    "proyecto2": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -94,6 +94,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "8317cb01-f7d0-4327-8cf3-860a90e2867f"
   }
 }
