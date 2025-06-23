@@ -1,0 +1,15 @@
+.encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: #007BFF;
+}
+
+
+
+.contenido {
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}

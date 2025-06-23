@@ -1,0 +1,109 @@
+/* Contenedor principal */
+.contenedor {
+  background: #77daf3;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 900px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Controles: buscador arriba, filtro abajo */
+.barra-controles {
+  display: flex;
+  flex-direction: column;   /* uno arriba del otro */
+  align-items: center;
+  gap: 0.5rem;              /* espacio vertical */
+  margin-bottom: 1.5rem;
+}
+
+/* Input de búsqueda y filtro tipo */
+.buscador,
+.filtro-tipo {
+  font-family: 'Press Start 2P';
+  width: 100%;
+  max-width: 320px;
+  padding: 20px;
+  border: none;
+  font-size: 17px;
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+}
+
+
+
+.buscador:focus,
+.filtro-tipo:focus {
+  background-color: #ffffff;
+  outline: none;
+}
+
+/* Lista de Pokémon */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+/* Cada Pokémon */
+.pokemon-item {
+  background: #ffffff;
+  padding: 1.5rem 1rem;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pokemon-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 0px rgba(63, 66, 255, 0.8);
+}
+
+.pokemon-item img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.pokemon-item span {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  color: #141414;
+}
+
+/* Tipos del Pokémon */
+.tipos {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tipo {
+  background-color: #3f52ff;
+  color: white;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* Mensaje cuando no hay resultados */
+p {
+  font-size: 1.1rem;
+  color: #070505;
+  margin-top: 2rem;
+}
