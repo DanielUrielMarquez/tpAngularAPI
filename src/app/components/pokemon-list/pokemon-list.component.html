@@ -1,33 +1,39 @@
 <div class="contenedor">
-  <input
-    [(ngModel)]="filtro"
-    placeholder="Buscar por nombre..."
-    class="buscador"
-    aria-label="Buscar Pokémon por nombre"
-  />
+  <div class="barra-controles">
+    <input
+      [(ngModel)]="filtro"
+      placeholder="Buscar por nombre..."
+      class="buscador"
+      aria-label="Buscar Pokémon por nombre"
+    />
 
-  <!-- Filtro por tipo -->
-  <select
-    [(ngModel)]="tipoSeleccionado"
-    class="filtro-tipo"
-    aria-label="Filtrar por tipo de Pokémon"
-  >
-    <option value="">Todos los tipos</option>
-    <option *ngFor="let tipo of tipos" [value]="tipo.name">
-      {{ tipo.name | titlecase }}
-    </option>
-  </select>
+    <!-- Filtro por tipo -->
+    <select
+      [(ngModel)]="tipoSeleccionado"
+      class="filtro-tipo"
+      aria-label="Filtrar por tipo de Pokémon"
+    >
+      <option value="">Todos los tipos</option>
+      <option *ngFor="let tipo of tipos" [value]="tipo.name">
+        {{ tipo.name | titlecase }}
+      </option>
+    </select>
+  </div>
 
+  <!-- Lista de Pokémon -->
   <ul>
     <li *ngFor="let p of pokemonsFiltrados" class="pokemon-item">
       <img [src]="p.imagen" [alt]="p.name" />
       <span>{{ p.name | titlecase }}</span>
       <div class="tipos">
-        <span>Tipo: {{ p.types.join(', ') | titlecase }}</span>
+        <span class="tipo" *ngFor="let tipo of p.types">
+          {{ tipo | titlecase }}
+        </span>
       </div>
     </li>
   </ul>
 
+  <!-- Mensaje si no hay resultados -->
   <p *ngIf="pokemonsFiltrados.length === 0">
     No se encontraron Pokémon.
   </p>

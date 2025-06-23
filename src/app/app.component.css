@@ -1,5 +1,15 @@
-h1 {
-  text-align: center;
-  color: rgba(208, 232, 253, 0.89);
-  font-size: 50px;
+.encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: #007BFF;
+}
+
+
+
+.contenido {
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 30px 20px;
 }
