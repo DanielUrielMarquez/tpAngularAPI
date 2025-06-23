@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/proyecto_2",
+            "outputPath": "dist/proyecto2",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "proyecto_2:build:production"
+              "buildTarget": "proyecto2:build:production"
             },
             "development": {
-              "buildTarget": "proyecto_2:build:development"
+              "buildTarget": "proyecto2:build:development"
             }
           },
           "defaultConfiguration": "development"
