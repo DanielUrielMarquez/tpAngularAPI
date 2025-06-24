@@ -13,9 +13,9 @@
 /* Controles: buscador arriba, filtro abajo */
 .barra-controles {
   display: flex;
-  flex-direction: column;   /* uno arriba del otro */
+  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;              /* espacio vertical */
+  gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -32,8 +32,6 @@
   color: #000000;
   text-align: center;
 }
-
-
 
 .buscador:focus,
 .filtro-tipo:focus {
