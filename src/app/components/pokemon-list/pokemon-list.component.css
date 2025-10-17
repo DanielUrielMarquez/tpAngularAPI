@@ -1,0 +1,151 @@
+/* Contenedor principal */
+.contenedor {
+  background: #77daf3;
+  padding: 2rem;
+  border-radius: 20px;
+  border: 3px solid #000;
+  max-width: 900px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Controles */
+.barra-controles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.buscador,
+.filtro-tipo {
+  font-family: 'Press Start 2P';
+  border-radius: 20px;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  width: 100%;
+  max-width: 320px;
+  padding: 20px;
+  font-size: 17px;
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+}
+
+.buscador:focus,
+.filtro-tipo:focus {
+  border-radius: 20px;
+  background-color: #ffffff;
+  outline: none;
+}
+
+/* Lista de Pokémon */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+/* Cada Pokémon */
+.pokemon-item {
+  background: #ffffff;
+  padding: 1.5rem 1rem;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border-radius: 12px;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.pokemon-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 0px rgba(63, 66, 255, 0.8);
+}
+
+/* Imagen pixelada */
+.pixel-img {
+  width: 150px;
+  height: 150px;
+  image-rendering: pixelated;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+/* Nombre */
+.pokemon-item span {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  color: #141414;
+}
+
+/* Tipos */
+.tipos {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Estilos base del tipo */
+.tipo {
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 2px solid #000;
+  color: white;
+  font-family: 'Press Start 2P';
+}
+
+/* 🎨 Colores por tipo */
+.tipo[data-type='Fire'] { background-color: #f08030; }
+.tipo[data-type='Water'] { background-color: #6890f0; }
+.tipo[data-type='Grass'] { background-color: #78c850; }
+.tipo[data-type='Electric'] { background-color: #f8d030; color: black; }
+.tipo[data-type='Psychic'] { background-color: #f85888; }
+.tipo[data-type='Ice'] { background-color: #98d8d8; color: black; }
+.tipo[data-type='Dragon'] { background-color: #7038f8; }
+.tipo[data-type='Dark'] { background-color: #705848; }
+.tipo[data-type='Fairy'] { background-color: #ee99ac; color: black; }
+.tipo[data-type='Fighting'] { background-color: #c03028; }
+.tipo[data-type='Poison'] { background-color: #a040a0; }
+.tipo[data-type='Ground'] { background-color: #e0c068; color: black; }
+.tipo[data-type='Flying'] { background-color: #a890f0; color: black; }
+.tipo[data-type='Bug'] { background-color: #a8b820; color: black; }
+.tipo[data-type='Rock'] { background-color: #b8a038; color: white; }
+.tipo[data-type='Ghost'] { background-color: #705898; }
+.tipo[data-type='Steel'] { background-color: #b8b8d0; color: black; }
+.tipo[data-type='Normal'] { background-color: #a8a878; color: black; }
+
+/* Mensaje cuando no hay resultados */
+p {
+  font-size: 1.1rem;
+  color: #070505;
+  margin-top: 2rem;
+}
+.boton-cargar {
+  margin-top: 20px;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  padding: 12px 24px;
+  background-color: #3f52ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Press Start 2P';
+  cursor: pointer;
+}
