@@ -21,20 +21,104 @@
   </div>
 
   <!-- Lista de Pokémon -->
-  <ul>
-    <li *ngFor="let p of pokemonsFiltrados" class="pokemon-item">
-      <img [src]="p.imagen" [alt]="p.name" />
-      <span>{{ p.name | titlecase }}</span>
-      <div class="tipos">
-        <span class="tipo" *ngFor="let tipo of p.types">
-          {{ tipo | titlecase }}
+  <!-- Lista de Pokémon -->
+  <ul class="pokemon-list">
+    <li *ngFor="let p of pokemonsFiltrados" class="pokemon-item pokemon-card">
+      <div class="pokemon-card-inner">
+
+        <button
+          type="button"
+          class="pokemon-btn"
+          [attr.aria-label]="'Ver detalles de ' + (p.name | titlecase)"
+          (click)="abrirDetalle(p, pokeImg)"
+          (keydown.enter)="abrirDetalle(p, pokeImg)"
+        >
+          <img
+            #pokeImg
+            [src]="p.imagenPixel"
+            [alt]="p.name"
+            class="pixel-img"
+          />
+        </button>
+
+        <span class="pokemon-nombre">
+          <span>#{{ p.id }}</span> {{ p.name | titlecase }}
         </span>
+
+
+
+        <div class="tipos">
+          <span
+            class="tipo"
+            *ngFor="let tipo of p.types"
+            [attr.data-type]="tipo | titlecase"
+          >
+            {{ tipo | titlecase }}
+          </span>
+        </div>
+
       </div>
     </li>
   </ul>
+
 
   <!-- Mensaje si no hay resultados -->
   <p *ngIf="pokemonsFiltrados.length === 0">
     No se encontraron Pokémon.
   </p>
+  <button
+  *ngIf="!cargando && offset < totalPokemons"
+  (click)="cargarMasPokemons()"
+  class="boton-cargar">  Cargar más Pokémon</button>
+
+<p *ngIf="cargando">Cargando...</p>
+
 </div>
+
+<div class="overlay" *ngIf="mostrarDetalle && pokemonSeleccionado">
+  <div class="detalle-pokemon">
+
+    <button class="cerrar" (click)="cerrarDetalle()">✖</button>
+
+    <img
+  [src]="pokemonSeleccionado.imagenPixel"
+  [alt]="pokemonSeleccionado.name"
+  class="pixel-display"
+/>
+
+
+    <h2>
+  #{{ pokemonSeleccionado?.id }}
+  {{ pokemonSeleccionado?.name | titlecase }}
+    </h2>
+
+    <!-- Tipos -->
+    <div class="tipos">
+      <span
+        class="tipo"
+        *ngFor="let tipo of pokemonSeleccionado.types"
+        [attr.data-type]="tipo | titlecase"
+      >
+        {{ tipo | titlecase }}
+      </span>
+    </div>
+
+    <!-- Habilidades -->
+    <h3 class="habilidades">Habilidades</h3>
+    <ul class="lista-habilidades">
+      <li *ngFor="let h of pokemonSeleccionado.abilities">
+        {{ h | titlecase }}
+      </li>
+    </ul>
+
+    <!-- Juegos -->
+    <h3 class="aparicion">Aparece en</h3>
+    <ul class="listaa">
+      <li *ngFor="let g of pokemonSeleccionado.games">
+        {{ g | titlecase }}
+      </li>
+    </ul>
+
+  </div>
+</div>
+
