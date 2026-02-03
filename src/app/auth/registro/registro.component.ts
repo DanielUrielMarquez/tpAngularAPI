@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -16,32 +17,34 @@ export class RegistroComponent {
   password = '';
   confirmPassword = '';
   errorMessage = '';
+  successMessage = '';
 
-  @Output() close = new EventEmitter<void>();
-
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   async register() {
     if (!this.username || !this.email || !this.password || !this.confirmPassword) {
       this.errorMessage = 'Completá todos los campos';
+      this.successMessage = '';
       return;
     }
 
     if (this.password !== this.confirmPassword) {
       this.errorMessage = 'Las contraseñas no coinciden';
+      this.successMessage = '';
       return;
     }
 
     try {
       await this.auth.register(this.email, this.password, this.username);
       this.errorMessage = '';
-      this.close.emit();
+      this.successMessage = 'Cuenta creada exitosamente';
+
+      setTimeout(() => {
+        this.router.navigate(['/pokemon']);
+      }, 800);
     } catch (err: any) {
       this.errorMessage = err?.message || 'Error al registrarse';
+      this.successMessage = '';
     }
-  }
-
-  cerrar() {
-    this.close.emit();
   }
 }

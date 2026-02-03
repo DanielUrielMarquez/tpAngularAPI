@@ -1,14 +1,13 @@
-// src/app/app.component.ts
 import { Component } from '@angular/core';
-import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [PokemonListComponent],  // <--- IMPORTÁ el componente aquí
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'tp-angular1';
+  title = 'proyecto_2';
 }

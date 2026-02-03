@@ -1,6 +1,6 @@
-<div class="register-card">
-  <button class="login-close" (click)="cerrar()" aria-label="Cerrar">✖</button>
 
+<div class="register-page">
+<div class="register-card">
   <h2 class="register-title">Registro</h2>
 
   <label class="register-label" for="reg-user">Usuario</label>
@@ -17,5 +17,8 @@
 
   <button class="register-btn" (click)="register()">Registrarse</button>
 
+  <p class="register-success" *ngIf="successMessage">{{ successMessage }}</p>
   <p class="register-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>
+
 </div>

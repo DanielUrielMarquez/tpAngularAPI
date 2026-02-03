@@ -8,6 +8,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'pokemon', component: PokemonListComponent, canActivate: [authGuard] },
-  { path: '', redirectTo: 'pokemon', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pokemon' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login' }
 ];

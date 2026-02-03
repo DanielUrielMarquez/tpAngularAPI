@@ -261,17 +261,6 @@ p {
   }
 }
 
-@media (max-width: 600px) {
-  .detalle-pokemon {
-    width: 95%;
-    border-radius: 12px;
-  }
-
-  .detalle-img {
-    width: 180px;
-    height: 180px;
-  }
-}
 
 .pokemon-modal {
   background: white;
@@ -400,11 +389,6 @@ p {
   margin-top: 10px;
 }
 
-@media (max-width: 480px) {
-  .enlistado li {
-    font-size: 16px;
-  }
-}
 
 .evolucion {
   background-color: #ffffff;
@@ -519,4 +503,117 @@ p {
 .logout {
   background-color: #ff3b3b;
   color: #fff;
+}
+
+
+
+/* === Mobile friendly === */
+@media (max-width: 768px) {
+  .contenedor {
+    padding: 1.2rem;
+    border-radius: 14px;
+  }
+
+  .barra-controles {
+    gap: 0.8rem;
+  }
+
+  .buscador,
+  .filtro-tipo {
+    max-width: 100%;
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .acciones {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .boton-func {
+    width: 100%;
+    margin-top: 6px;
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+
+  ul {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .pokemon-item {
+    width: 100%;
+    padding: 1rem 0.6rem;
+  }
+
+  .pixel-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .pokemon-item span {
+    font-size: 0.9rem;
+  }
+
+  .tipos {
+    font-size: 0.85rem;
+  }
+
+  .fav-btn {
+    width: 26px;
+    height: 26px;
+  }
+
+  .fav-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .detalle-pokemon {
+    width: 96%;
+    padding: 12px;
+  }
+
+  .pixel-display {
+    width: 180px;
+    height: 180px;
+  }
+
+  .editNom {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor {
+    padding: 1rem;
+  }
+
+  ul {
+    grid-template-columns: 1fr;
+  }
+
+  .buscador,
+  .filtro-tipo {
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .pixel-img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .pokemon-item span {
+    font-size: 0.85rem;
+  }
+
+  .tipos {
+    font-size: 0.8rem;
+  }
+
+  .enlistado li {
+    font-size: 12px;
+  }
 }
