@@ -9,6 +9,7 @@ import { switchMap, catchError, finalize } from 'rxjs/operators';
 import { PokemonService } from '../../services/pokemon.service';
 import { FavoritesService } from '../../services/favorites.service';
 import { Auth, authState, signOut } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -57,7 +58,8 @@ export class PokemonListComponent implements OnInit {
   constructor(
     private pokemonService: PokemonService,
     private favoritesService: FavoritesService,
-    private auth: Auth
+    private auth: Auth,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -65,20 +67,40 @@ export class PokemonListComponent implements OnInit {
     this.cargarMasPokemons();
 
     authState(this.auth).subscribe(async user => {
-      this.userUid = user?.uid || null;
-      this.currentUserName = user?.displayName || (user?.email ? user.email.split('@')[0] : '');
+      this.resetListado();
+      this.pokemonService.resetLoadedPokemons();
+
+      if (!user) {
+        this.userUid = null;
+        this.currentUserName = '';
+        this.favoritos.clear();
+        this.soloFavoritos = false;
+        this.router.navigate(['/login']);
+        return;
+      }
+
+      this.userUid = user.uid;
+      this.currentUserName = user.displayName || (user.email ? user.email.split('@')[0] : '');
       this.favoritos.clear();
       this.soloFavoritos = false;
 
-      if (this.userUid) {
-        const favs = await this.favoritesService.getFavorites(this.userUid);
-        this.favoritos = new Set<number>(favs);
-      }
+      const favs = await this.favoritesService.getFavorites(this.userUid);
+      this.favoritos = new Set<number>(favs);
+
+      this.cargarMasPokemons();
     });
   }
 
   get isLoggedIn(): boolean {
     return !!this.userUid;
+  }
+
+  private resetListado() {
+    this.pokemons = [];
+    this.offset = 0;
+    this.cargando = false;
+    this.pokemonSeleccionado = null;
+    this.mostrarDetalle = false;
   }
 
   cargarTipos() {
@@ -197,6 +219,7 @@ export class PokemonListComponent implements OnInit {
     this.currentUserName = '';
     this.favoritos.clear();
     this.soloFavoritos = false;
+    this.router.navigate(['/login']);
   }
 
   abrirDetalle(pokemon: any, img: HTMLImageElement) {
