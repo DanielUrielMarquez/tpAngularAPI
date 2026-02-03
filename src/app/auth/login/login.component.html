@@ -1,0 +1,17 @@
+<div class="login-card">
+  <button class="login-close" (click)="cerrar()" aria-label="Cerrar">✖</button>
+
+  <h2 class="login-title">Login</h2>
+
+  <label class="login-label" for="login-email">Email</label>
+  <input id="login-email" [(ngModel)]="email" placeholder="Email" />
+
+  <label class="login-label" for="login-pass">Contraseña</label>
+  <input id="login-pass" [(ngModel)]="password" type="password" placeholder="Contraseña" />
+
+  <button class="login-btn" (click)="login()">Ingresar</button>
+
+  <button class="login-link" (click)="irARegistro()">Crear cuenta</button>
+
+  <p class="login-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>

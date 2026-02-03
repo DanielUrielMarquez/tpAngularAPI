@@ -1,51 +1,69 @@
 <div class="contenedor">
   <div class="barra-controles">
-    <input
-      [(ngModel)]="filtro"
-      placeholder="Buscar por nombre..."
-      class="buscador"
-      aria-label="Buscar Pokémon por nombre"
-    />
+    <div class="user-chip" *ngIf="isLoggedIn">
+      Entrenador: {{ currentUserName }}
+    </div>
 
-    <!-- Filtro por tipo -->
-    <select
-      [(ngModel)]="tipoSeleccionado"
-      class="filtro-tipo"
-      aria-label="Filtrar por tipo de Pokémon"
-    >
+    <input [(ngModel)]="filtro" placeholder="Buscar por nombre..." class="buscador" aria-label="Buscar Pokémon por nombre"/>
+
+    <select [(ngModel)]="tipoSeleccionado" class="filtro-tipo" aria-label="Filtrar por tipo de Pokémon">
       <option value="">Todos los tipos</option>
       <option *ngFor="let tipo of tipos" [value]="tipo.name">
         {{ tipo.name | titlecase }}
       </option>
     </select>
+
+    <div class="acciones">
+      <button *ngIf="!isLoggedIn" class="boton-func" (click)="openLogin()">
+        Iniciar sesión
+      </button>
+
+      <button *ngIf="isLoggedIn" class="boton-func logout" (click)="logout()">
+        Cerrar sesión
+      </button>
+
+      <button *ngIf="isLoggedIn" class="boton-func" [class.activo]="soloFavoritos" (click)="toggleSoloFavoritos()">
+        {{ soloFavoritos ? 'Mostrando favoritos' : 'Ver favoritos' }}
+      </button>
+    </div>
   </div>
 
-  <!-- Lista de Pokémon -->
-  <!-- Lista de Pokémon -->
+  <div class="overlay-sesion" *ngIf="showLogin">
+    <app-login (close)="closeLogin()" (goRegister)="openRegister()"></app-login>
+  </div>
+
+  <div class="overlay-sesion" *ngIf="showRegister">
+    <app-register (close)="closeRegister()"></app-register>
+  </div>
+
   <ul class="pokemon-list">
     <li *ngFor="let p of pokemonsFiltrados" class="pokemon-item pokemon-card">
       <div class="pokemon-card-inner">
-
         <button
           type="button"
-          class="pokemon-btn"
-          [attr.aria-label]="'Ver detalles de ' + (p.name | titlecase)"
+          class="fav-btn"
+          [class.activo]="esFavorito(p.id)"
+          (click)="toggleFavorito(p.id); $event.stopPropagation()"
+          aria-label="Favorito"
+        >
+          <img
+            src="https://www.pikpng.com/pngl/b/318-3188473_estrella-de-vida-pixel-art-mario-star-clipart.png"
+            alt="Favorito"
+            class="fav-icon"
+            [class.activo]="esFavorito(p.id)"
+          />
+        </button>
+
+        <button type="button" class="pokemon-btn" [attr.aria-label]="'Ver detalles de ' + (p.name | titlecase)"
           (click)="abrirDetalle(p, pokeImg)"
           (keydown.enter)="abrirDetalle(p, pokeImg)"
         >
-          <img
-            #pokeImg
-            [src]="p.imagenPixel"
-            [alt]="p.name"
-            class="pixel-img"
-          />
+          <img #pokeImg [src]="p.imagenPixel" [alt]="p.name" class="pixel-img"/>
         </button>
 
         <span class="pokemon-nombre">
           <span>#{{ p.id }}</span> {{ p.name | titlecase }}
         </span>
-
-
 
         <div class="tipos">
           <span
@@ -56,69 +74,72 @@
             {{ tipo | titlecase }}
           </span>
         </div>
-
       </div>
     </li>
   </ul>
 
-
-  <!-- Mensaje si no hay resultados -->
   <p *ngIf="pokemonsFiltrados.length === 0">
     No se encontraron Pokémon.
   </p>
+
   <button
-  *ngIf="!cargando && offset < totalPokemons"
-  (click)="cargarMasPokemons()"
-  class="boton-cargar">  Cargar más Pokémon</button>
+    *ngIf="!cargando && offset < totalPokemons"
+    (click)="cargarMasPokemons()"
+    class="boton-func">Cargar más Pokémon</button>
 
-<p *ngIf="cargando">Cargando...</p>
+  <p *ngIf="cargando">Cargando...</p>
 
-</div>
+  <div class="overlay" *ngIf="mostrarDetalle && pokemonSeleccionado">
+    <div class="detalle-pokemon">
+      <button class="cerrar" (click)="cerrarDetalle()">✖</button>
+      <img
+        [src]="pokemonSeleccionado.imagenPixel"
+        [alt]="pokemonSeleccionado.name"
+        class="pixel-display"
+      />
 
-<div class="overlay" *ngIf="mostrarDetalle && pokemonSeleccionado">
-  <div class="detalle-pokemon">
+      <h2 class="editNom">
+        #{{ pokemonSeleccionado?.id }}
+        {{ pokemonSeleccionado?.name | titlecase }}
+      </h2>
 
-    <button class="cerrar" (click)="cerrarDetalle()">✖</button>
+      <div class="tipos">
+        <span
+          class="tipo"
+          *ngFor="let tipo of pokemonSeleccionado.types"
+          [attr.data-type]="tipo | titlecase"
+        >
+          {{ tipo | titlecase }}
+        </span>
+      </div>
 
-    <img
-  [src]="pokemonSeleccionado.imagenPixel"
-  [alt]="pokemonSeleccionado.name"
-  class="pixel-display"
-/>
+      <h3 class="habilidades">Habilidades</h3>
+      <ul class="enlistado">
+        <li *ngFor="let h of pokemonSeleccionado.abilities">
+          {{ h | titlecase }}
+        </li>
+      </ul>
 
+      <div *ngIf="tieneEvoluciones">
+        <h3 class="aparicion">Evoluciones</h3>
+        <div class="evoluciones">
+          <div class="evolucion" *ngFor="let e of evoluciones">
+            <img
+              [src]="e.imagenPixel"
+              [alt]="e.name"
+              class="pixel-img"
+            />
+            <span>{{ e.name | titlecase }}</span>
+          </div>
+        </div>
+      </div>
 
-    <h2>
-  #{{ pokemonSeleccionado?.id }}
-  {{ pokemonSeleccionado?.name | titlecase }}
-    </h2>
-
-    <!-- Tipos -->
-    <div class="tipos">
-      <span
-        class="tipo"
-        *ngFor="let tipo of pokemonSeleccionado.types"
-        [attr.data-type]="tipo | titlecase"
-      >
-        {{ tipo | titlecase }}
-      </span>
+      <h3 class="aparicion">Aparece en</h3>
+      <ul class="enlistado">
+        <li *ngFor="let g of pokemonSeleccionado.games">
+          {{ g | titlecase }}
+        </li>
+      </ul>
     </div>
-
-    <!-- Habilidades -->
-    <h3 class="habilidades">Habilidades</h3>
-    <ul class="lista-habilidades">
-      <li *ngFor="let h of pokemonSeleccionado.abilities">
-        {{ h | titlecase }}
-      </li>
-    </ul>
-
-    <!-- Juegos -->
-    <h3 class="aparicion">Aparece en</h3>
-    <ul class="listaa">
-      <li *ngFor="let g of pokemonSeleccionado.games">
-        {{ g | titlecase }}
-      </li>
-    </ul>
-
   </div>
 </div>
-

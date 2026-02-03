@@ -1,0 +1,21 @@
+<div class="register-card">
+  <button class="login-close" (click)="cerrar()" aria-label="Cerrar">✖</button>
+
+  <h2 class="register-title">Registro</h2>
+
+  <label class="register-label" for="reg-user">Usuario</label>
+  <input id="reg-user" [(ngModel)]="username" placeholder="Nombre de usuario" />
+
+  <label class="register-label" for="reg-email">Email</label>
+  <input id="reg-email" [(ngModel)]="email" placeholder="Email" />
+
+  <label class="register-label" for="reg-pass">Contraseña</label>
+  <input id="reg-pass" [(ngModel)]="password" type="password" placeholder="Contraseña" />
+
+  <label class="register-label" for="reg-pass2">Confirmar contraseña</label>
+  <input id="reg-pass2" [(ngModel)]="confirmPassword" type="password" placeholder="Confirmar contraseña" />
+
+  <button class="register-btn" (click)="register()">Registrarse</button>
+
+  <p class="register-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>

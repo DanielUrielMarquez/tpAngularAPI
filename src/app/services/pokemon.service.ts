@@ -31,16 +31,24 @@ export class PokemonService {
       );
   }
 
-  getTypes() {
-    return this.http.get(`${this.baseUrl}/type/`);
-  }
+getTypes(): Observable<any> {
+  return this.http.get<any>(`${this.baseUrl}/type/`);
+}
 
-  getPokemonDetail(url: string) {
-    return this.http.get(url);
-  }
+getPokemonDetail(url: string): Observable<any> {
+  return this.http.get<any>(url);
+}
+
+getPokemonSpecies(id: number): Observable<any> {
+  return this.http.get<any>(`${this.baseUrl}/pokemon-species/${id}`);
+}
+
+getEvolutionChain(url: string): Observable<any> {
+  return this.http.get<any>(url);
+}
 
   // Reiniciar el registro de pokemons cargados
   resetLoadedPokemons() {
-    this.loadedPokemonNames.clear();
-  }
+  this.loadedPokemonNames.clear();
+}
 }
