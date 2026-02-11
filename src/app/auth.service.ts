@@ -10,10 +10,11 @@ export interface AuthResponse {
 @Injectable({
   providedIn: 'root' // 🔹 inyectable globalmente
 })
+// Servicio de autenticación para manejar registro, login y estado de sesión
 export class AuthService {
   private apiUrl = 'http://localhost:3000/api/auth';
   private readonly TOKEN_KEY = 'auth_token';
-
+// Inyectar HttpClient para hacer peticiones al backend
   constructor(private http: HttpClient) {}
 
   // Registro

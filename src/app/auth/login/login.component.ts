@@ -15,15 +15,15 @@ export class LoginComponent {
   email = '';
   password = '';
   errorMessage = '';
-
+// Inyectar AuthService y Router
   constructor(private auth: AuthService, private router: Router) {}
-
+// Método de login
   async login() {
     if (!this.email || !this.password) {
       this.errorMessage = 'Completá todos los campos';
       return;
     }
-
+// Intentar login
     try {
       await this.auth.login(this.email, this.password);
       this.errorMessage = '';

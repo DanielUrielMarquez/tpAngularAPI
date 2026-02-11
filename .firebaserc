@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "otro-ejemplo-f4e51"
-  }
+    "default": "pokeapi-angular-c80ab",
+    "pokeapi": "pokeapi-angular-c80ab"
+  },
+  "targets": {},
+  "etags": {}
 }

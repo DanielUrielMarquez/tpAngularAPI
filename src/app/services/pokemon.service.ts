@@ -31,24 +31,28 @@ export class PokemonService {
       );
   }
 
+  // Traer tipos
 getTypes(): Observable<any> {
   return this.http.get<any>(`${this.baseUrl}/type/`);
 }
 
+  // Traer detalles de un Pokémon
 getPokemonDetail(url: string): Observable<any> {
   return this.http.get<any>(url);
 }
 
+  // Traer detalles de una especie de Pokémon
 getPokemonSpecies(id: number): Observable<any> {
   return this.http.get<any>(`${this.baseUrl}/pokemon-species/${id}`);
 }
 
+  // Traer cadena evolutiva
 getEvolutionChain(url: string): Observable<any> {
   return this.http.get<any>(url);
 }
 
   // Reiniciar el registro de pokemons cargados
-  resetLoadedPokemons() {
+resetLoadedPokemons() {
   this.loadedPokemonNames.clear();
 }
 }

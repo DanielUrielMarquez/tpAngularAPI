@@ -1,12 +1,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCEnvxmj32S1_jcam7iulOk0c8EPjeoYHw",
-    authDomain: "otro-ejemplo-f4e51.firebaseapp.com",
-    databaseURL: "https://otro-ejemplo-f4e51-default-rtdb.firebaseio.com",
-    projectId: "otro-ejemplo-f4e51",
-    storageBucket: "otro-ejemplo-f4e51.firebasestorage.app",
-    messagingSenderId: "291199068492",
-    appId: "1:291199068492:web:561331ae2d50250b7347e9"
+    apiKey: "AIzaSyCTvFsHu9X98g14j9UWRtAOyMxhgglLpu0",
+    authDomain: "pokeapi-angular-c80ab.firebaseapp.com",
+    projectId: "pokeapi-angular-c80ab",
+    storageBucket: "pokeapi-angular-c80ab.firebasestorage.app",
+    messagingSenderId: "1072470849534",
+    appId: "1:1072470849534:web:f1977c3366cb1ee3c8b2af",
+    measurementId: "G-QS3G3PXNRV"
   }
 };
